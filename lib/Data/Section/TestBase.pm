@@ -29,9 +29,27 @@ sub blocks() {
 1;
 __END__
 
+=head1 NAME
+
+Data::Section::TestBase - Parse Test::Base format from DATA section
+
 =head1 SYNOPSIS
 
     use Data::Section::TestBase;
 
     my @blocks = blocks;
+
+=head1 DESCRIPTION
+
+This module parse a DATA section as Test::Base format by L<Text::TestBase>.
+
+=head1 FUNCTIONS
+
+=over 4
+
+=item my @blocks = blocks();
+
+Get a list of blocks from DATA section
+
+=back
 

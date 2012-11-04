@@ -1,9 +1,13 @@
 .travis.yml
 Build.PL
 Changes
+lib/Data/Section/TestBase.pm
 lib/Text/TestBase.pm
+lib/Text/TestBase/Block.pm
 MANIFEST			This list of files
 t/00_compile.t
+t/03_block.t
+t/04_data.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

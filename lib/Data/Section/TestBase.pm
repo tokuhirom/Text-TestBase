@@ -49,7 +49,7 @@ This module parse a DATA section as Test::Base format by L<Text::TestBase>.
 
 =item my @blocks = blocks();
 
-Get a list of blocks from DATA section
+Get a list of blocks from DATA section Element of @list is a instance of Text::TestBase::Block.
 
 =back
 

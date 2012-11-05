@@ -16,6 +16,8 @@ my $build = Module::Build->new(
         'Exporter'                      => '0',
         'parent'                        => '0',
         'Class::Accessor::Lite' => 0,
+
+        'Test::More' => '0.98', # for Test::Base::Less
     },
 
     no_index    => { 'directory' => [ 'inc' ] },

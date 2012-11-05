@@ -17,6 +17,7 @@ yyy
 my $block = Text::TestBase->new()->_make_block($hunk);
 subtest 'check' => sub {
     is($block->get_section('input'), "xxx\n");
+    is($block->input, "xxx\n");
     is($block->get_section('expected'), "yyy\n");
     is($block->description, "hogehoge");
     is($block->name, "hogehoge");

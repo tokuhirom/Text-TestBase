@@ -53,6 +53,7 @@ sub _make_block {
     my $section_order = [];
     while (@parts) {
         my ($type, $filters, $value) = splice(@parts, 0, 3);
+        $self->_check_reserved($type);
         $value = '' unless defined $value;
         $filters = '' unless defined $filters;
         if ($filters =~ /:(\s|\z)/) {
@@ -66,6 +67,20 @@ sub _make_block {
     }
     return $block;
 }
+
+my $reserved_section_names = {};
+{
+    %$reserved_section_names = map {
+        ($_, 1);
+    } keys(%Text::TestBase::Block::), qw( new DESTROY );
+}
+sub _check_reserved {
+    my $id = shift;
+    Carp::croak "'$id' is a reserved name. Use something else.\n"
+      if $reserved_section_names->{$id} or
+         $id =~ /^_/;
+}
+
 
 1;
 __END__
@@ -102,7 +117,7 @@ Test::Base breaks my distribution sometime. I need more simple implementation fo
 
 =item my $parser = Text::TestBase->new();
 
-Create new praser instance.
+Create new parser instance.
 
 =item $parser->parse($src: Str): List of Text::TestBase::Block
 

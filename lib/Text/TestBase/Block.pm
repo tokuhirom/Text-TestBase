@@ -41,6 +41,13 @@ sub push_section {
     push @{$self->{_section_order}}, $key;
 }
 
+our $AUTOLOAD;
+sub AUTOLOAD {
+    $AUTOLOAD =~ s/.*:://;
+    my $self = shift;
+    $self->get_section($AUTOLOAD);
+}
+
 1;
 __END__
 

@@ -26,7 +26,12 @@ sub get_section {
 
 sub get_sections {
     my ($self, $key) = @_;
-    map { $self->{_value_map}->{$_} } @{$self->{_section_order}};
+    map { $self->{_value_map}->{$_} } $self->get_section_names();
+}
+
+sub get_section_names {
+    my ($self, $key) = @_;
+    @{$self->{_section_order}};
 }
 
 sub get_filter {
@@ -39,6 +44,11 @@ sub push_section {
     $self->{_filter_map}->{$key} = $filters;
     $self->{_value_map}->{$key} = $value;
     push @{$self->{_section_order}}, $key;
+}
+
+sub set_section {
+    my ($self, $key, $value) = @_;
+    $self->{_value_map}->{$key} = $value;
 }
 
 our $AUTOLOAD;

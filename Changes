@@ -1,4 +1,8 @@
 Revision history for Perl extension Text::TestBase
 
+0.02
+
+    - added Test::Base::Less
+
 0.01    Mon Nov  5 02:07:44 2012
     - original version

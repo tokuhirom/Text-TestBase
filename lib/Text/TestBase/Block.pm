@@ -21,7 +21,8 @@ sub has_section {
 
 sub get_section {
     my ($self, $key) = @_;
-    return $self->{_value_map}->{$key};
+    my $value = $self->{_value_map}->{$key};
+    return wantarray ? @$value : $value->[0];
 }
 
 sub get_sections {
@@ -42,13 +43,13 @@ sub get_filter {
 sub push_section {
     my ($self, $key, $value, $filters) = @_;
     $self->{_filter_map}->{$key} = $filters;
-    $self->{_value_map}->{$key} = $value;
+    $self->{_value_map}->{$key} = [$value];
     push @{$self->{_section_order}}, $key;
 }
 
 sub set_section {
-    my ($self, $key, $value) = @_;
-    $self->{_value_map}->{$key} = $value;
+    my ($self, $key, @values) = @_;
+    $self->{_value_map}->{$key} = [@values];
 }
 
 our $AUTOLOAD;

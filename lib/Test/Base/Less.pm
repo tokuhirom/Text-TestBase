@@ -40,7 +40,7 @@ sub blocks() {
                     } else { # filters { input => [qw/eval/] };
                         my $filter = $FILTERS{$filter_stuff};
                         unless ($filter) {
-                            Carp::croak "Unknown filter name: $filter";
+                            Carp::croak "Unknown filter name: $filter_stuff";
                         }
                         @data = $filter->(@data);
                     }

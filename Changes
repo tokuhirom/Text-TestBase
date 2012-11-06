@@ -1,7 +1,14 @@
 Revision history for Perl extension Text::TestBase
 
+
+0.05
+
+    - fixed line number version counting
+    - 0.04 is completely broken
+
 0.04
 
+    [ THIS VERSION OF RELEASE IS BROKEN ]
     - added line number counting feature for
       Test::Base::Less, Data::Section::TestBase
     - added 'run' function for Test::Base::Less

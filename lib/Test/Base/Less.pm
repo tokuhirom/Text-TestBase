@@ -8,7 +8,7 @@ use Test::More;
 use Data::Section::TestBase ();
 use Carp ();
 
-our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run/);
+our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is/);
 
 our %FILTER_MAP;
 our %FILTERS;
@@ -77,6 +77,18 @@ sub run(&) {
     }
 }
 
+sub run_is($$) {
+    my ($a, $b) = @_;
+
+    for my $block (_get_blocks(scalar(caller(0)))) {
+        __PACKAGE__->builder->is_eq(
+            $block->get_section($a),
+            $block->get_section($b),
+            $block->name || 'L: ' . $block->get_lineno
+        );
+    }
+}
+
 package Test::Base::Less::Filter;
 
 Test::Base::Less::register_filter(eval => \&_eval);
@@ -92,6 +104,11 @@ sub _eval {
 Test::Base::Less::register_filter(chomp => \&_chomp);
 sub _chomp {
     map { CORE::chomp; $_ } @_;
+}
+
+Test::Base::Less::register_filter(uc => \&_uc);
+sub _uc {
+    map { CORE::uc($_) } @_;
 }
 
 1;
@@ -162,6 +179,10 @@ eval() the code.
 =item chomp
 
 chomp() the arguments.
+
+=item uc
+
+uc() the arguments.
 
 =back
 

@@ -126,7 +126,7 @@ Register a filter for $name using $code.
 =head1 DEFAULT FILTERS
 
 This module provides only few filters. If you want to add more filters, pull-reqs welcome.
-(I only merge a patch using no dependend modules)
+(I only merge a patch using no depended modules)
 
 =over 4
 

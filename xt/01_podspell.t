@@ -60,3 +60,5 @@ mysqldiff
 mmm
 Str
 YAML
+pull-reqs
+exportable

@@ -27,9 +27,3 @@ subtest 'check' => sub {
 note Dumper($block);
 
 done_testing;
-__DATA__
-=== hogehoge
---- input
-xxx
---- expected
-yyy

@@ -8,7 +8,7 @@ use Test::More;
 use Data::Section::TestBase ();
 use Carp ();
 
-our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter/);
+our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run/);
 
 our %FILTER_MAP;
 our %FILTERS;
@@ -50,6 +50,15 @@ sub blocks() {
         }
     }
     return @blocks;
+}
+
+sub run(&) {
+    my $code = shift;
+    for my $block (blocks()) {
+        __PACKAGE__->builder->subtest($block->name || ' ', sub {
+            $code->($block);
+        });
+    }
 }
 
 package Test::Base::Less::Filter;

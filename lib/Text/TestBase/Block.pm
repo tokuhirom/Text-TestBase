@@ -40,6 +40,11 @@ sub get_filter {
     $self->{_filter_map}->{$key};
 }
 
+sub get_lineno {
+    my $self = shift;
+    return $self->{_lineno};
+}
+
 sub push_section {
     my ($self, $key, $value, $filters) = @_;
     $self->{_filter_map}->{$key} = $filters;

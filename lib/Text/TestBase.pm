@@ -26,12 +26,18 @@ sub parse {
     my ($self, $spec) = @_;
     my $cd = $self->block_delim;
     my @hunks = ($spec =~ /^(\Q${cd}\E.*?(?=^\Q${cd}\E|\z))/msg);
-    my @blocks = map { $self->_make_block($_) } @hunks;
+
+    my @blocks;
+    my $lineno = 1;
+    for my $hunk (@hunks) {
+        push @blocks, $self->_make_block($hunk, $lineno);
+        $lineno += scalar(split /\n/, $hunk) + 1;
+    }
     return @blocks;
 }
 
 sub _make_block {
-    my ($self, $hunk) = @_;
+    my ($self, $hunk, $lineno) = @_;
 
     my $cd = $self->block_delim;
     my $dd = $self->data_delim;
@@ -47,6 +53,7 @@ sub _make_block {
     my $block = $self->block_class->new(
         description => $description,
         name        => $name,
+        _lineno     => $lineno,
     );
     
     my $filter_map = {};
@@ -78,7 +85,7 @@ sub _check_reserved {
     my $id = shift;
     Carp::croak "'$id' is a reserved name. Use something else.\n"
       if $reserved_section_names->{$id} or
-         $id =~ /^_/;
+         $id =~ /^_/ or $id =~ /^(get_|set_|push_)/;
 }
 
 

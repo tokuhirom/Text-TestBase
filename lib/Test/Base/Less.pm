@@ -34,12 +34,16 @@ sub blocks() {
         for my $section_name ($block->get_section_names) {
             my @data = $block->get_section($section_name);
             if (my $filter_names = $FILTER_MAP{$section_name}) {
-                for my $filter_name (@$filter_names) {
-                    my $filter = $FILTERS{$filter_name};
-                    unless ($filter) {
-                        Carp::croak "Unknown filter name: $filter";
+                for my $filter_stuff (@$filter_names) {
+                    if (ref $filter_stuff eq 'CODE') { # filters { input => [\&code] };
+                        @data = $filter_stuff->(@data);
+                    } else { # filters { input => [qw/eval/] };
+                        my $filter = $FILTERS{$filter_stuff};
+                        unless ($filter) {
+                            Carp::croak "Unknown filter name: $filter";
+                        }
+                        @data = $filter->(@data);
                     }
-                    @data = $filter->(@data);
                 }
             }
             $block->set_section($section_name => @data);
@@ -70,7 +74,7 @@ __END__
 
 =head1 NAME
 
-Test::Base::Lite - Limited version of Test::Base.
+Test::Base::Less - Limited version of Test::Base.
 
 =head1 SYNOPSIS
 
@@ -135,3 +139,20 @@ eval() the code.
 chomp() the arguments.
 
 =back
+
+=head1 REGISTER YOUR OWN FILTER
+
+You can register your own filter by following form:
+
+    use Digest::MD5 qw/md5_hex/;
+    Test::Base::Less::register_filter(md5_hex => \&md5_hex);
+
+=head1 USE CODEREF AS FILTER
+
+You can use a coderef as filter.
+
+    use Digest::MD5 qw/md5_hex/;
+    filters {
+        input => [\&md5_hex],
+    };
+

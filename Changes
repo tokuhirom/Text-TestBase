@@ -1,5 +1,8 @@
 Revision history for Perl extension Text::TestBase
 
+0.06
+
+    - added 'run_is' function and 'uc' filter
 
 0.05
 

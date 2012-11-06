@@ -14,6 +14,9 @@ README
 t/00_compile.t
 t/Data-Section-TestBase/04_data.t
 t/Test-Base-Less/01_run_is.t
+t/Test-Base-Less/02_only.t
+t/Test-Base-Less/03_skip.t
+t/Test-Base-Less/04_last.t
 t/Test-Base-Less/05_test.t
 t/Test-Base-Less/06_test_base_less_custom_filters.t
 t/Test-Base-Less/07_test_base_less_run.t

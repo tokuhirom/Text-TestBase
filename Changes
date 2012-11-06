@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::TestBase
 
+0.07
+
+    - added support for 'ONLY', 'LAST', 'SKIP' for Test::Base::Less
+
 0.06
 
     - added 'run_is' function and 'uc' filter

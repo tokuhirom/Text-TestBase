@@ -25,13 +25,25 @@ sub new {
 sub parse {
     my ($self, $spec) = @_;
     my $cd = $self->block_delim;
-    my @hunks = ($spec =~ /^(\Q${cd}\E.*?(?=^\Q${cd}\E|\z))/msg);
+    my $lineno = 1;
+    my @hunks;
+
+    $spec =~ s/
+          ^(\Q${cd}\E.*?(?=^\Q${cd}\E|\z))
+        | ^([^\n]*\n)
+    /
+        if ($1) {
+            push @hunks, $1;
+        } elsif ($2) {
+            $lineno++;
+        }
+        '';
+    /msgxe;
 
     my @blocks;
-    my $lineno = 1;
     for my $hunk (@hunks) {
         push @blocks, $self->_make_block($hunk, $lineno);
-        $lineno += scalar(split /\n/, $hunk) + 1;
+        $hunk =~ s/\n/$lineno++/ge;
     }
     return @blocks;
 }

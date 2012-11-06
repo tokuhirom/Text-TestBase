@@ -7,6 +7,9 @@ filters {
     code => [qw/eval/],
 };
 
+is(0+blocks, 2) or die "BAIL OUT";
+isa_ok([blocks]->[0], 'Text::TestBase::Block');
+
 is_deeply([blocks]->[0]->code, +{ a => 'b' });
 is(scalar([blocks]->[1]->code), 'X');
 is_deeply([[blocks]->[1]->code], [qw/X Y/]);

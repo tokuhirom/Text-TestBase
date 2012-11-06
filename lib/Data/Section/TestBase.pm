@@ -25,10 +25,6 @@ sub blocks() {
 
     my $content = join '', <$d>;
 
-    $content =~ s/^(.*\n__DATA__\n)/\n/s; # for win32
-    $line_offset += scalar(split /\n/, $1);
-    $content =~ s/\n__END__\n.*$/\n/s;
-
     my $parser = Text::TestBase->new();
     my @blocks = $parser->parse($content);
     for my $block (@blocks) {

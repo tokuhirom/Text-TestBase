@@ -28,13 +28,23 @@ sub filters($) {
 }
 
 sub blocks() {
-    _get_blocks(scalar(caller(0)));
+    my @blocks = _get_blocks(scalar(caller(0)));
+    return @blocks;
 }
 
 sub _get_blocks {
     my $package = shift;
-    my $sec = Data::Section::TestBase->new(package => $package);
-    my @blocks = $sec->blocks();
+
+    my $d = do { no strict 'refs'; \*{"${package}::DATA"} };
+    unless (defined fileno $d) {
+        Carp::croak("Missing __DATA__ section in $package.");
+    }
+    seek $d, 0, 0;
+
+    my $content = join '', <$d>;
+
+    my $parser = Text::TestBase->new();
+    my @blocks = $parser->parse($content);
     for my $block (@blocks) {
         for my $section_name ($block->get_section_names) {
             my @data = $block->get_section($section_name);

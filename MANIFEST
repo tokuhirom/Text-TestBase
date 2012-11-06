@@ -14,6 +14,7 @@ t/00_compile.t
 t/03_block.t
 t/04_data.t
 t/05_test.t
+t/06_test_base_less_custom_filters.t
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

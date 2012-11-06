@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::TestBase
 
+0.03
+
+    - use coderef as a filter for Test::Base::Less
+
 0.02
 
     - added Test::Base::Less

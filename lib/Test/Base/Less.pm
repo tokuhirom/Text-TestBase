@@ -45,6 +45,7 @@ sub _get_blocks {
 
     my $parser = Text::TestBase->new();
     my @blocks = $parser->parse($content);
+    my @retval;
     for my $block (@blocks) {
         for my $section_name ($block->get_section_names) {
             my @data = $block->get_section($section_name);
@@ -63,8 +64,19 @@ sub _get_blocks {
             }
             $block->set_section($section_name => @data);
         }
+        if ($block->has_section('ONLY')) {
+            __PACKAGE__->builder->diag("I found ONLY: maybe you're debugging?");
+            return $block;
+        }
+        if ($block->has_section('SKIP')) {
+            next;
+        }
+        push @retval, $block;
+        if ($block->has_section('LAST')) {
+            return @retval;
+        }
     }
-    return @blocks;
+    return @retval;
 }
 
 sub run(&) {

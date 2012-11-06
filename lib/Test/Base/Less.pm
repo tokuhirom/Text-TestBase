@@ -28,7 +28,12 @@ sub filters($) {
 }
 
 sub blocks() {
-    my $sec = Data::Section::TestBase->new(package => scalar(caller));
+    _get_blocks(scalar(caller(0)));
+}
+
+sub _get_blocks {
+    my $package = shift;
+    my $sec = Data::Section::TestBase->new(package => $package);
     my @blocks = $sec->blocks();
     for my $block (@blocks) {
         for my $section_name ($block->get_section_names) {
@@ -54,8 +59,9 @@ sub blocks() {
 
 sub run(&) {
     my $code = shift;
-    for my $block (blocks()) {
-        __PACKAGE__->builder->subtest($block->name || ' ', sub {
+
+    for my $block (_get_blocks(scalar(caller(0)))) {
+        __PACKAGE__->builder->subtest($block->name || 'L: ' . $block->get_lineno, sub {
             $code->($block);
         });
     }

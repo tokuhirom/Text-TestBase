@@ -13,6 +13,7 @@ subtest 'first block' => sub {
     is($b->name, 'foo');
     is($b->get_section('input'), 'yyy');
     is($b->get_section('expected'), 'zzz');
+    is($b->get_lineno, 30);
 };
 
 subtest 'second block' => sub {
@@ -20,6 +21,7 @@ subtest 'second block' => sub {
     is($b->name, 'bar');
     is($b->get_section('input'), "xxx\n");
     is($b->get_section('expected'), "ppp\n");
+    is($b->get_lineno, 34);
 };
 
 done_testing;

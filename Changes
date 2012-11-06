@@ -1,5 +1,11 @@
 Revision history for Perl extension Text::TestBase
 
+0.04
+
+    - added line number counting feature for
+      Test::Base::Less, Data::Section::TestBase
+    - added 'run' function for Test::Base::Less
+
 0.03
 
     - use coderef as a filter for Test::Base::Less

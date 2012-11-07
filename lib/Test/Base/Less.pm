@@ -8,7 +8,7 @@ use Test::More;
 use Data::Section::TestBase ();
 use Carp ();
 
-our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is/);
+our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is run_is_deeply/);
 
 our %FILTER_MAP;
 our %FILTERS;
@@ -94,6 +94,19 @@ sub run_is($$) {
 
     for my $block (_get_blocks(scalar(caller(0)))) {
         __PACKAGE__->builder->is_eq(
+            $block->get_section($a),
+            $block->get_section($b),
+            $block->name || 'L: ' . $block->get_lineno
+        );
+    }
+}
+
+sub run_is_deeply($$) {
+    my ($a, $b) = @_;
+
+    for my $block (_get_blocks(scalar(caller(0)))) {
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        Test::More::is_deeply(
             $block->get_section($a),
             $block->get_section($b),
             $block->name || 'L: ' . $block->get_lineno

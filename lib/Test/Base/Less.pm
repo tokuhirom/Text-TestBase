@@ -123,6 +123,15 @@ sub _uc {
     map { CORE::uc($_) } @_;
 }
 
+Test::Base::Less::register_filter(trim => \&_trim);
+sub _trim {
+    map {
+        s/\A([ \t]*\n)+//;
+        s/(?<=\n)\s*\z//g;
+        $_;
+    } @_;
+}
+
 1;
 __END__
 
@@ -196,6 +205,11 @@ chomp() the arguments.
 
 uc() the arguments.
 
+=item trim
+
+Remove extra blank lines from the beginning and end of the data. This
+allows you to visually separate your test data with blank lines.
+
 =back
 
 =head1 REGISTER YOUR OWN FILTER
@@ -214,3 +228,6 @@ You can use a coderef as filter.
         input => [\&md5_hex],
     };
 
+=head1 SEE ALSO
+
+Most of code is taken from L<Test::Base>. Thanks Ingy.

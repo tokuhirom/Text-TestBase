@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use utf8;
 
+our $VERSION = '0.08';
+
 use parent qw/Test::Builder::Module Exporter/;
 use Test::More;
 use Data::Section::TestBase ();

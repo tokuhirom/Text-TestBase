@@ -20,6 +20,9 @@ t/Test-Base-Less/04_last.t
 t/Test-Base-Less/05_test.t
 t/Test-Base-Less/06_test_base_less_custom_filters.t
 t/Test-Base-Less/07_test_base_less_run.t
+t/Test-Base-Less/default_filters.t
+t/Test-Base-Less/multiline.t
+t/Test-Base-Less/run_is_deeply.t
 t/Text-TestBase/02_block_offset.t
 t/Text-TestBase/03_block.t
 xt/01_podspell.t

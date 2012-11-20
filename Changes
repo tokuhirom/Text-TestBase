@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::TestBase
 
+0.09
+
+    - fixed testing issue on older perls.
+
 0.08
 
     - added 'trim' filter

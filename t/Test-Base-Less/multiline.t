@@ -2,7 +2,7 @@ use strict;
 use Test::Base::Less;
 
 filters {
-    input => ['trim', \&CORE::uc],
+    input => ['trim', sub { uc(shift) }],
     expected => ['trim'],
 };
 

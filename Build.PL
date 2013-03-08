@@ -15,7 +15,7 @@ my $build = Module::Build->new(
         perl => '5.008001',
         'Exporter'                      => '0',
         'parent'                        => '0',
-        'Class::Accessor::Lite' => 0,
+        'Class::Accessor::Lite' => '0.05',
 
         'Test::More' => '0.98', # for Test::Base::Less
     },

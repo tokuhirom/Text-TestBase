@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 use parent qw/Test::Builder::Module Exporter/;
 use Test::More;
@@ -214,11 +214,11 @@ eval() the code.
 
 =item chomp
 
-chomp() the arguments.
+C<chomp()> the arguments.
 
 =item uc
 
-uc() the arguments.
+C<uc()> the arguments.
 
 =item trim
 
@@ -236,7 +236,7 @@ You can register your own filter by following form:
 
 =head1 USE CODEREF AS FILTER
 
-You can use a coderef as filter.
+You can use a CodeRef as filter.
 
     use Digest::MD5 qw/md5_hex/;
     filters {

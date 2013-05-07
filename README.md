@@ -24,11 +24,11 @@ Test::Base breaks my distribution sometime. I need more simple implementation fo
 
 # METHODS
 
-- my $parser = Text::TestBase->new();
+- `my $parser = Text::TestBase->new();`
 
     Create new parser instance.
 
-- $parser->parse($src: Str): List of Text::TestBase::Block
+- `$parser->parse($src: Str): List of Text::TestBase::Block`
 
     Parse $src and get a list of [Text::TestBase::Block](http://search.cpan.org/perldoc?Text::TestBase::Block)
 

@@ -2,6 +2,11 @@ Revision history for Perl extension Text::TestBase
 
 {{$NEXT}}
 
+0.10 2013-05-07T05:22:43Z
+
+    - Fixed deps
+      (tokuhirom)
+
 0.09
 
     - fixed testing issue on older perls.

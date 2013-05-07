@@ -2,7 +2,7 @@ package Text::TestBase;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 use Class::Accessor::Lite (
     rw => [qw/block_delim data_delim block_class/],
@@ -134,11 +134,11 @@ Test::Base breaks my distribution sometime. I need more simple implementation fo
 
 =over 4
 
-=item my $parser = Text::TestBase->new();
+=item C<< my $parser = Text::TestBase->new(); >>
 
 Create new parser instance.
 
-=item $parser->parse($src: Str): List of Text::TestBase::Block
+=item C<< $parser->parse($src: Str): List of Text::TestBase::Block >>
 
 Parse $src and get a list of L<Text::TestBase::Block>
 

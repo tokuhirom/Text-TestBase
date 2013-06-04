@@ -10,6 +10,7 @@ sub new {
     my $class = shift;
     my %args = @_==1 ? %{$_[0]} : @_;
     bless {
+        _section_order => [],
         %args
     }, $class;
 }
@@ -22,6 +23,7 @@ sub has_section {
 sub get_section {
     my ($self, $key) = @_;
     my $value = $self->{_value_map}->{$key};
+    return undef unless defined $value;
     return wantarray ? @$value : $value->[0];
 }
 

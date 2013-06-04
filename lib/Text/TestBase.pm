@@ -2,7 +2,7 @@ package Text::TestBase;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Class::Accessor::Lite (
     rw => [qw/block_delim data_delim block_class/],

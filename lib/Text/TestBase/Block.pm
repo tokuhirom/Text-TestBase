@@ -63,6 +63,9 @@ our $AUTOLOAD;
 sub AUTOLOAD {
     $AUTOLOAD =~ s/.*:://;
     my $self = shift;
+    unless ($self->has_section($AUTOLOAD)) {
+        Carp::croak("There is no $AUTOLOAD' sction in the block.");
+    }
     $self->get_section($AUTOLOAD);
 }
 

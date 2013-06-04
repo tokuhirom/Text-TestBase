@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use parent qw/Test::Builder::Module Exporter/;
 use Test::More;

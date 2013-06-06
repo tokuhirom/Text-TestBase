@@ -14,16 +14,21 @@ xxx
 yyy
 ...
 
-my $block = Text::TestBase->new()->_make_block($hunk);
 subtest 'check' => sub {
-    is($block->get_section('input'), "xxx\n");
-    is($block->input, "xxx\n");
-    is($block->get_section('expected'), "yyy\n");
-    is($block->description, "hogehoge");
-    is($block->name, "hogehoge");
-    ok($block->has_section('ONLY'));
-    ok(not $block->has_section('SKIP'));
+    my $warnings = '';
+    local $SIG{__WARN__} = sub { $warnings .= $_[0] };
+    {
+        my $block = Text::TestBase->new()->_make_block($hunk);
+        is($block->get_section('input'), "xxx\n");
+        is($block->input, "xxx\n");
+        is($block->get_section('expected'), "yyy\n");
+        is($block->description, "hogehoge");
+        is($block->name, "hogehoge");
+        ok($block->has_section('ONLY'));
+        ok(not $block->has_section('SKIP'));
+        note Dumper($block);
+    }
+    is($warnings, '');
 };
-note Dumper($block);
 
 done_testing;

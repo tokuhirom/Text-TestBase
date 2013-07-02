@@ -7,6 +7,8 @@ use parent qw/Exporter/;
 our @EXPORT = qw/blocks/;
 use Text::TestBase;
 
+our $VERSION = '0.11';
+
 sub new {
     my $class = shift;
     my %args= @_==1 ? %{$_[0]} : @_;

@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.4.7, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "Minilla/v0.5.5, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "perl_5"
    ],
@@ -70,8 +70,9 @@
          "web" : "https://github.com/tokuhirom/Text-TestBase"
       }
    },
-   "version" : "0.11",
+   "version" : "0.12",
    "x_contributors" : [
+      "Hiroki Honda <cside.story@gmail.com>",
       "tokuhirom <tokuhirom@gmail.com>"
    ]
 }

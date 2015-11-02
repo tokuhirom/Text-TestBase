@@ -15,8 +15,9 @@ sub new {
     bless { %args }, $class;
 }
 
-sub blocks() {
+sub blocks(;$) {
     my $self = ref $_[0] ? shift : __PACKAGE__->new(package => scalar caller);
+    my $filter = shift;
 
     my $d = do { no strict 'refs'; \*{$self->{package}."::DATA"} };
     return unless defined fileno $d;
@@ -31,6 +32,9 @@ sub blocks() {
     my @blocks = $parser->parse($content);
     for my $block (@blocks) {
         $block->{_lineno} += $line_offset;
+    }
+    if($filter){
+        return grep {$_->has_section($filter)} @blocks;
     }
     return @blocks;
 }
@@ -56,9 +60,10 @@ This module parse a DATA section as Test::Base format by L<Text::TestBase>.
 
 =over 4
 
-=item my @blocks = blocks();
+=item my @blocks = blocks([section_name]);
 
-Get a list of blocks from DATA section Element of @list is a instance of Text::TestBase::Block.
+Get a list of blocks from the DATA section. The elements of @list are instances of L<Text::TestBase::Block>.
+If C<section_name> is provided, only return blocks that have a section with that name.
 
 =back
 

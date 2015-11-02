@@ -147,6 +147,14 @@ sub _trim {
     } @_;
 }
 
+Test::Base::Less::register_filter(lines => \&_lines);
+sub _lines {
+    my $src = shift;
+    return () unless length $src;
+    my @lines = ($src =~ /^(.*\n?)/gm);
+    return @lines;
+}
+
 1;
 __END__
 
@@ -224,6 +232,14 @@ C<uc()> the arguments.
 
 Remove extra blank lines from the beginning and end of the data. This
 allows you to visually separate your test data with blank lines.
+
+=back
+
+=item lines
+
+Break the data into an anonymous array of lines.
+Each line (except possibly the last one if the chomp filter came first)
+will have a newline at the end.
 
 =back
 

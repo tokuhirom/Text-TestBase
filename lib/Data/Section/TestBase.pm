@@ -7,7 +7,7 @@ use parent qw/Exporter/;
 our @EXPORT = qw/blocks/;
 use Text::TestBase;
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 sub new {
     my $class = shift;

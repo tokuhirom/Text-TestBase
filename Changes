@@ -2,6 +2,25 @@ Revision history for Perl module Text::TestBase
 
 {{$NEXT}}
 
+0.13 2015-11-02T06:52:37Z
+
+    commit 3e71c2755a5af796da7c15a62af5071926a343d8
+    Author: Nathan Glenn <nathan.g.glenn@atr-trek.co.jp>
+    Date:   Mon Nov 2 13:04:29 2015 +0900
+
+        lines filter
+
+        Add a default filter for returning a data section as an array of
+        lines.
+
+    commit 7a718f3f4fd47c78474896224dcc68011826943c
+    Author: Nathan Glenn <nathan.g.glenn@atr-trek.co.jp>
+    Date:   Mon Nov 2 12:48:35 2015 +0900
+
+        add simple block filter
+
+        Allow the caller to get only blocks containing a given named section.
+
 0.12 2013-07-22T04:57:52Z
 
     - Suppress warnings

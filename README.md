@@ -30,15 +30,15 @@ Test::Base breaks my distribution sometime. I need more simple implementation fo
 
 - `$parser->parse($src: Str): List of Text::TestBase::Block`
 
-    Parse $src and get a list of [Text::TestBase::Block](http://search.cpan.org/perldoc?Text::TestBase::Block)
+    Parse $src and get a list of [Text::TestBase::Block](https://metacpan.org/pod/Text::TestBase::Block)
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+Tokuhiro Matsuno &lt;tokuhirom AAJKLFJEF@ GMAIL COM>
 
 # SEE ALSO
 
-Most of the code was taken from [Test::Base](http://search.cpan.org/perldoc?Test::Base), of course.
+Most of the code was taken from [Test::Base](https://metacpan.org/pod/Test::Base), of course.
 
 # LICENSE
 

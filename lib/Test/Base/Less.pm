@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 use parent qw/Test::Builder::Module Exporter/;
 use Test::More;
@@ -232,8 +232,6 @@ C<uc()> the arguments.
 
 Remove extra blank lines from the beginning and end of the data. This
 allows you to visually separate your test data with blank lines.
-
-=back
 
 =item lines
 
